@@ -4,11 +4,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Main {
 
-    public static String FILE_SEPARATOR = "\\ ";
+    private static double [] numbers;
+	private  static int setAmount;
 
+    public static String FILE_SEPARATOR = "\\ ";
+/*
     public static void initialize() throws NumberFormatException, IOException {
         
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +26,7 @@ public class Main {
             }
         }
         br.close();
-    }
+    }*/
 
     public static String importFile() throws IOException{
         BufferedReader brf = new BufferedReader(new FileReader("C:/Users/USUARIO/Desktop/Tercer Semestre/Algortimos y programación II/S4_MURCIA_LUIS/ordinances/data"));
@@ -77,7 +81,35 @@ public class Main {
         }
     }
 
+    public static void start() throws NumberFormatException, IOException {	
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Escriba la cantidad de conjuntos");
+		setAmount=Integer.parseInt(br.readLine());
+		
+		fullSets();
+	} 
+
+    public static void fullSets() throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int i=0;
+		while (i<setAmount) {
+			System.out.println("Escriba las edades de los estudiantes");
+			String ages=br.readLine();
+			String[] arrayAges=ages.split(" ");
+			numbers = new double[arrayAges.length];
+			for(int j=0; j<arrayAges.length; j++) {
+                numbers[j]=Double.parseDouble(arrayAges[j]);
+				
+			}
+			i++;
+			bubbleSort();
+			System.out.println(Arrays.toString(numbers));
+			
+		}
+	}
+
     public static void main(String[] args) throws Exception {
-        initialize();
+        //initialize();
+        start();
     }
 }
